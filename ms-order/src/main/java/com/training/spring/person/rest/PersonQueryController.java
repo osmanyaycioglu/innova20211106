@@ -1,4 +1,4 @@
-package com.training.spring.servlet.person.rest;
+package com.training.spring.person.rest;
 
 import java.util.List;
 

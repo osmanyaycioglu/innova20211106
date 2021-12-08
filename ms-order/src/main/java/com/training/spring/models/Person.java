@@ -2,18 +2,32 @@ package com.training.spring.models;
 
 import java.time.LocalDate;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 @XmlRootElement
 public class Person {
 
+    @NotEmpty
+    @Size(min = 2, max = 20)
     private String    name;
+    @NotEmpty
+    @Size(min = 2, max = 20)
     private String    surname;
     //@JsonIgnore
     @XmlTransient
+    @Past
     private LocalDate birthday;
+    @Max(400)
+    @Min(10)
     private int       weight;
+    @Max(400)
+    @Min(50)
     private int       height;
 
     public String getName() {
