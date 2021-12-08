@@ -1,15 +1,39 @@
-package com.training.spring.models;
+package com.training.spring.person.rest.models;
 
 import java.time.LocalDate;
 
-public class Person {
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
+import com.training.spring.validation.StartWith;
+
+@XmlRootElement
+public class PersonRestObj {
+
+    @NotEmpty
+    @Size(min = 2, max = 20, message = "name {min} ile {max} arasında olmalı")
+    @StartWith("n:")
     private String    name;
+    @NotEmpty
+    @Size(min = 2, max = 20)
+    @StartWith("s:")
     private String    surname;
+    //@JsonIgnore
+    @XmlTransient
+    @Past
     private LocalDate birthday;
-    private String    number;
+    @Max(400)
+    @Min(10)
     private int       weight;
+    @Max(400)
+    @Min(50)
     private int       height;
+    private String    number;
 
     public String getName() {
         return this.name;

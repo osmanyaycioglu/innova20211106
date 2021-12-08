@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.training.spring.models.Person;
 
 @RestController
-@RequestMapping("/api/v1/person/provision")
+@RequestMapping("/api/v1/person/provision2")
 public class PersonProvisionController2 {
 
     @PostMapping
