@@ -10,14 +10,18 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+import com.training.spring.validation.StartWith;
+
 @XmlRootElement
 public class Person {
 
     @NotEmpty
-    @Size(min = 2, max = 20)
+    @Size(min = 2, max = 20, message = "name {min} ile {max} arasında olmalı")
+    @StartWith("n:")
     private String    name;
     @NotEmpty
     @Size(min = 2, max = 20)
+    @StartWith("s:")
     private String    surname;
     //@JsonIgnore
     @XmlTransient
