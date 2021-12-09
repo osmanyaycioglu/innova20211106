@@ -1,6 +1,10 @@
 package com.ms.common.error;
 
 import java.util.List;
+import java.util.Set;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,6 +36,21 @@ public class ErrorAdvice {
                                            .setMessage("Validation error")
                                            .setErrorCode(12300);
         for (ObjectError objectErrorLoc : allErrorsLoc) {
+            rootError.addSubError(this.errconfig.buildBaseErrorObj()
+                                                .setMessage("" + objectErrorLoc)
+                                                .setErrorCode(12301));
+        }
+        return rootError;
+    }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorObj handleException(final ConstraintViolationException exp) {
+        Set<ConstraintViolation<?>> allErrorsLoc = exp.getConstraintViolations();
+        ErrorObj rootError = this.errconfig.buildBaseErrorObj()
+                                           .setMessage("Validation error")
+                                           .setErrorCode(12300);
+        for (ConstraintViolation<?> objectErrorLoc : allErrorsLoc) {
             rootError.addSubError(this.errconfig.buildBaseErrorObj()
                                                 .setMessage("" + objectErrorLoc)
                                                 .setErrorCode(12301));
