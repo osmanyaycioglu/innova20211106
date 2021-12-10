@@ -8,7 +8,7 @@ import com.ms.common.error.feign.MyFeignClientException;
 import com.training.spring.order.integrations.models.Menu;
 import com.training.spring.order.integrations.models.MenuPriceInfo;
 
-@FeignClient("RESTAURANT")
+@FeignClient("RESTAURANT-API")
 //@RequestMapping("/api/v1/restaurant/menu")
 public interface IRestaurantMenuIntegration {
 

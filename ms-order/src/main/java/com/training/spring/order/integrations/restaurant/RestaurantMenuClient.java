@@ -85,7 +85,7 @@ public class RestaurantMenuClient {
         Menu menuLoc = new Menu();
         menuLoc.setMeals(orderParam.getMeals());
         menuLoc.setMenuName("Menu : " + orderParam.getName() + " " + orderParam.getSurname());
-        MenuPriceInfo menuPriceInfoLoc = this.rt.postForObject("http://RESTAURANT/api/v1/restaurant/menu/calculate",
+        MenuPriceInfo menuPriceInfoLoc = this.rt.postForObject("http://RESTAURANT-API/api/v1/restaurant/menu/calculate",
                                                                menuLoc,
                                                                MenuPriceInfo.class);
         return menuPriceInfoLoc;
