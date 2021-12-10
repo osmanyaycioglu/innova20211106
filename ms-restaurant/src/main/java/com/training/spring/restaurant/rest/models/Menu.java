@@ -1,13 +1,14 @@
-package com.training.spring.order.integrations.models;
+package com.training.spring.restaurant.rest.models;
 
 import java.util.List;
 
-import com.training.spring.order.rest.models.Meal;
+import javax.validation.constraints.NotEmpty;
 
 public class Menu {
 
     private String     menuName;
     private List<Meal> meals;
+    @NotEmpty
     private String     extra;
 
     public String getMenuName() {

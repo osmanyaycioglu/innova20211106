@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ms.common.error.feign.MyFeignClientException;
 import com.training.spring.order.mappers.OrderMappers;
 import com.training.spring.order.rest.models.OrderRestObj;
 import com.training.spring.order.services.OrderManagementService;
@@ -18,7 +19,7 @@ public class OrderManagementController {
     private OrderManagementService oms;
 
     @PostMapping("/place")
-    public String place(@RequestBody final OrderRestObj order) {
+    public String place(@RequestBody final OrderRestObj order) throws MyFeignClientException {
         return this.oms.place(OrderMappers.toOrder(order));
     }
 
