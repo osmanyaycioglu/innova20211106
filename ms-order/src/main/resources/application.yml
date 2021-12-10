@@ -1,0 +1,31 @@
+app:
+  bounded-context: bd1
+  microservice: order
+  sub-domain: sub1
+server:
+  error:
+    include-binding-errors: always
+    include-exception: true
+    include-message: always
+  port: ${app.port:11000}
+  tomcat:
+    threads:
+      max: 200
+      min-spare: 50
+    max-connections: 500
+    max-keep-alive-requests: 200
+    keep-alive-timeout: 120s
+    max-swallow-size: 4000
+spring:
+  application:
+    name: order
+  cloud:
+    loadbalancer:
+      retry:
+        avoid-previous-instance: true
+        enabled: true
+        max-retries-on-next-service-instance: 2
+        max-retries-on-same-service-instance: 0
+        retry-on-all-operations: true
+  config:
+    import: configserver:http://127.0.0.1:8888
