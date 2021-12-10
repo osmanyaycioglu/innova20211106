@@ -1,5 +1,7 @@
 package com.training.spring.rest;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -11,7 +13,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/rest")
+@RefreshScope
 public class MyRest {
+
+    @Value("${prop.test1}")
+    private String testStr;
+
+    @GetMapping("test")
+    public String test() {
+        return this.testStr;
+    }
 
     @GetMapping("/hello")
     public String hello(@RequestParam("isim") final String name) {
